@@ -4,17 +4,16 @@ import 'package:auth_user/core/themes/app_fonts.dart';
 import 'package:auth_user/core/widget/custom_button.dart';
 import 'package:auth_user/core/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
+import '../controllers/daftar_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  LoginView({Key? key}) : super(key: key);
+class DaftarView extends GetView<DaftarController> {
+  DaftarView({Key? key}) : super(key: key);
 
   final username = TextEditingController();
+  final name = TextEditingController();
   final password = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +38,7 @@ class LoginView extends GetView<LoginController> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text(
-                    "Login Sekarang",
+                    "Daftar Akun",
                     style: AppFonts.poppins(
                         fontSize: 18,
                         color: blackColor,
@@ -47,7 +46,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 Text(
-                  "Silahkan masukkan username dan password anda",
+                  "Silahkan daftarkan username, nama, dan password anda",
                   style: AppFonts.poppins(fontSize: 12, color: blackColor),
                 ),
                 const SizedBox(
@@ -56,6 +55,13 @@ class LoginView extends GetView<LoginController> {
                 CustomTextfield(
                   label: "Username",
                   controller: username,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomTextfield(
+                  label: "Nama",
+                  controller: name,
                 ),
                 const SizedBox(
                   height: 10,
@@ -70,9 +76,10 @@ class LoginView extends GetView<LoginController> {
                 ),
                 CustomButton(
                     onPressed: () {
-                      controller.loginForm(username.text, password.text);
+                      controller.registerForm(
+                          username.text, name.text, password.text);
                     },
-                    text: "Masuk"),
+                    text: "Daftar"),
                 const SizedBox(
                   height: 10,
                 ),
@@ -80,15 +87,15 @@ class LoginView extends GetView<LoginController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Belum Memiliki Akun?",
+                      "Sudah Memiliki Akun?",
                       style: AppFonts.poppins(fontSize: 12, color: textColor),
                     ),
                     TextButton(
                         onPressed: () {
-                          Get.toNamed(Routes.DAFTAR);
+                          Get.toNamed(Routes.LOGIN);
                         },
                         child: Text(
-                          "Daftar Sekarang",
+                          "Login",
                           style: AppFonts.poppins(
                               fontSize: 13,
                               color: primaryColor,
